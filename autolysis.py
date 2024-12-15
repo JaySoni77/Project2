@@ -137,6 +137,11 @@ if __name__ == "__main__":
             {missing_values}
 
             Provide statistical insights based on the above information.
+            Use the following format:
+            1. Dataset Overview
+            2. Null Values Analysis
+            3. Descriptive Statistics
+            4. Conclude your analysis.
             """
 
             prompt2 = f"""
@@ -144,6 +149,7 @@ if __name__ == "__main__":
             {correlation_matrix}
 
             Provide insights based on the correlation matrix:
+            Use the following format:
             1. Briefly summarize the data.
             2. Present the correlation matrix as it is.
             3. Provide insights in bullet points.
