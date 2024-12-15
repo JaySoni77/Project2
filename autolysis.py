@@ -24,7 +24,7 @@ from contextlib import contextmanager
 import time
 
 # Global API Token
-API_KEY = os.getenv("AIPROXY_TOKEN")
+API_KEY = os.environ["AIPROXY_TOKEN"]
 API_URL = "https://aiproxy.sanand.workers.dev/openai/v1/chat/completions"
 
 # Check if API Token is available
