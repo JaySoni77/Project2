@@ -92,10 +92,6 @@ if __name__ == "__main__":
     folder_name = os.path.splitext(os.path.basename(csv_file))[0]
     os.makedirs(folder_name, exist_ok=True)
 
-    # # Create subfolder 'img' to store the image
-    # img_folder = os.path.join(folder_name, 'img')
-    # os.makedirs(img_folder, exist_ok=True)
-
     try:
         # Detect encoding and read CSV
         print("[INFO] Detecting file encoding...")
@@ -129,7 +125,7 @@ if __name__ == "__main__":
 
             # Prompts for AI analysis
             print("[INFO] Preparing prompts for LLM analysis...")
-            prompt1 = f"""
+            prompt_dynamic = f"""
             You are a Data Analyst. I am providing information about data. Analyze it and provide insights.
 
             Dataset columns:
@@ -141,44 +137,52 @@ if __name__ == "__main__":
             Missing values:
             {missing_values}
 
-            Provide statistical insights based on the above information.
-            Use the following format:
-            1. Dataset Overview
-            2. Null Values Analysis
-            3. Descriptive Statistics
-            4. Conclude your analysis.
+            Based on this info kindly provide prompt that can be used to analyse csv file by llm.
+            And follow format for response.
+            I will provide only your response in  next prompt.
+            Formate: 
+            first provide above info as it is and then write a prompt in less than 4 line.
+            also add in prompt that 'do not return any code in response'
             """
+            
+            print("[INFO] Asking LLM for a dynamic prompt...")
+            dynamic_prompt = call_api(prompt_dynamic)
+            # print(f"[INFO] Generated dynamic prompt: {dynamic_prompt}")
 
-            prompt2 = f"""
+            # Use the dynamic prompt for further analysis
+            print("[INFO] Sending dynamic prompt to LLM...")
+            dynamic_analysis = call_api(dynamic_prompt)
+
+            prompt_corr = f"""
             The correlation matrix is:
             {correlation_matrix}
 
             Provide insights based on the correlation matrix:
             Use the following format:
             1. Briefly summarize the data.
-            2. Present the correlation matrix as it is.
-            3. Provide insights in bullet points.
-            4. Conclude your analysis.
+            2. Provide insights in bullet points.
+            3. Conclude your analysis.
+
+            ![Correlation Matrix](correlation_matrix.png)
             """
 
-            prompt3 = f"""
-            Write a story from your analysis:
-            1. Briefly describe the data received.
-            2. Explain the analysis carried out.
-            3. Highlight key insights discovered.
-            4. Discuss the implications of the findings.
-
-            Use the following format:
-            - Write a short paragraph under each heading.
-            - Use bullet points where necessary.
-            - Conclude the story.
+            prompt_story = f"""
+            You are an experienced data storyteller. Based on the results and analysis provided from the dataset, craft a comprehensive narrative that conveys key findings, trends, and actionable insights. Use the following structure to frame the story:  
+            
+            1. **Introduction to the Data**:  
+            2. **Key Findings from Statistical Analysis**:  
+            3. **Insights from Correlation Matrix**:  
+            4. **Trends and Patterns**:  
+            5. **Implications and Recommendations**:  
+            6. **Conclusion**:  
+            Be concise yet informative, ensuring that the narrative is engaging and easy for a general audience to understand. Use bullet points or short paragraphs wherever necessary to improve clarity. Include real-world examples if relevant.  
             """
 
             # Call LLM for insights
             print("[INFO] Sending data to LLM for analysis...")
-            insights1 = call_api(prompt1)
-            insights2 = call_api(prompt2)
-            insights3 = call_api(prompt3)
+            insights1 = call_api(dynamic_prompt)
+            insights2 = call_api(prompt_corr)
+            insights3 = call_api(prompt_story)
 
             # Save analysis to README
             print("[INFO] Writing insights to README.md...")
@@ -190,7 +194,7 @@ if __name__ == "__main__":
                 f.write((insights1 if "Error" not in insights1 else f"Error: {insights1}") + "\n")
                 f.write("### Correlation Insights\n")
                 f.write((insights2 if "Error" not in insights2 else f"Error: {insights2}") + "\n")
-                f.write("### Story Analysis\n")
+                f.write("### Story\n")
                 f.write((insights3 if "Error" not in insights3 else f"Error: {insights3}") + "\n")
                 f.write("### Visualizations\n")
                 f.write(f"![Correlation Matrix](correlation_matrix.png)\n")
