@@ -92,9 +92,9 @@ if __name__ == "__main__":
     folder_name = os.path.splitext(os.path.basename(csv_file))[0]
     os.makedirs(folder_name, exist_ok=True)
 
-    # Create subfolder 'img' to store the image
-    img_folder = os.path.join(folder_name, 'img')
-    os.makedirs(img_folder, exist_ok=True)
+    # # Create subfolder 'img' to store the image
+    # img_folder = os.path.join(folder_name, 'img')
+    # os.makedirs(img_folder, exist_ok=True)
 
     try:
         # Detect encoding and read CSV
@@ -119,8 +119,8 @@ if __name__ == "__main__":
 
             # Save heatmap
             print("[INFO] Creating correlation matrix heatmap...")
-            heatmap_path = os.path.join(img_folder, "correlation_matrix.png")
-            # heatmap_path = os.path.join(folder_name, "correlation_matrix.png")
+            # heatmap_path = os.path.join(img_folder, "correlation_matrix.png")
+            heatmap_path = os.path.join(folder_name, "correlation_matrix.png")
             sns.heatmap(correlation_matrix, annot=True, fmt=".2f", cmap="coolwarm", cbar=True)
             plt.title("Correlation Matrix Heatmap")
             plt.tight_layout()
