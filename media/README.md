@@ -59,5 +59,5 @@ Based on our findings, the following actions are recommended to leverage insight
 
 ## 6. Conclusion
 The analysis of the dataset has unveiled crucial insights into customer behavior and market dynamics. The findings not only reflect opportunities for enhancing sales and customer engagement but also underscore the importance of aligning business strategies with evolving consumer values. By implementing the recommendations, businesses can strengthen their market position, foster loyalty, and drive sustained growth in an increasingly competitive landscape.
-### Visualizations
+### Visualizations:
 ![Correlation Matrix](correlation_matrix.png)

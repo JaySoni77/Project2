@@ -73,5 +73,5 @@ In today's rapidly evolving landscape, understanding data is crucial for making 
 
 ### 6. Conclusion:
 The analysis reveals compelling insights into customer behavior and sales performance that can serve as a roadmap for strategic decision-making. By focusing on targeted marketing initiatives, enhancing customer experiences, and adapting to regional differences, organizations can harness these insights to drive growth and improve retention. The journey from data to actionable insights illustrates not only the power of analytics but also the potential for organizations to thrive in a competitive landscape by making informed decisions based on robust data analysis.
-### Visualizations
+### Visualizations:
 ![Correlation Matrix](correlation_matrix.png)

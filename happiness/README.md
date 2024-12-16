@@ -105,5 +105,5 @@ Based on the findings and insights, we propose the following recommendations:
 
 ### 6. Conclusion
 Our analysis of the dataset reveals significant opportunities for growth by understanding customer behavior and leveraging those insights. By tailoring strategies to meet the needs of distinct customer segments, enhancing online engagement, and prioritizing customer satisfaction, businesses are well-positioned to increase sales and build lasting customer relationships. As we move forward, it will be essential to continually adapt to emerging trends and insights derived from evolving data.
-### Visualizations
+### Visualizations:
 ![Correlation Matrix](correlation_matrix.png)

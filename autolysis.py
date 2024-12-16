@@ -1,27 +1,27 @@
 # /// script
 # requires-python = ">=3.11"
 # dependencies = [
-#   "httpx",
-#   "pandas",
+#   "chardet",
+#   "matplotlib",
 #   "requests",
 #   "seaborn",
-#   "matplotlib",
+#   "pandas",
 #   "ipykernel",
-#   "chardet",
+#   "httpx",
 # ]
 # ///
 
-import argparse
 import os
+import time
+import requests
+import signal
+import chardet
+import argparse
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import chardet
-import requests
-import signal
 from requests.adapters import HTTPAdapter, Retry
 from contextlib import contextmanager
-import time
 
 # Global API Token
 API_KEY = os.environ["AIPROXY_TOKEN"]
